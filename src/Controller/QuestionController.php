@@ -11,7 +11,9 @@ class QuestionController extends AbstractController {
 
     #[Route('/', name: 'list')]
     public function homepage() : Response {
-        return new Response('Hi there!');
+        return $this->render('question/homepage.html.twig',
+        []
+    );
     }
 
     #[Route('/questions/{slug}', name: 'show')]
@@ -22,6 +24,8 @@ class QuestionController extends AbstractController {
             'Eat that jar',
             'Say spell backwards'
         ];
+
+        dump($slug, $this);
         return $this->render('question/show.html.twig',
         ['question'=> ucwords(str_replace('-', ' ', $slug)),
          'answers' => $answers,
