@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/', name: 'question_')]
+#[Route('/', name: 'app_question_')]
 class QuestionController extends AbstractController {
 
     #[Route('/', name: 'list')]
