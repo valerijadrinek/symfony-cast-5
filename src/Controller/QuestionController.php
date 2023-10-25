@@ -17,7 +17,17 @@ class QuestionController extends AbstractController {
     #[Route('/questions/{slug}', name: 'show')]
     public function show($slug): Response
     {
-        return new Response(sprintf('Future page to show the "%s" question!', ucwords(str_replace('-', ' ', $slug ) )));
+        $answers = [
+            'Fill another jar',
+            'Eat that jar',
+            'Say spell backwards'
+        ];
+        return $this->render('question/show.html.twig',
+        ['question'=> ucwords(str_replace('-', ' ', $slug)),
+         'answers' => $answers,
+        ]
+    
+    );
     }
 
 }
