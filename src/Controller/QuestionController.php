@@ -1,10 +1,12 @@
 <?php
 namespace App\Controller;
 
+use App\Service\MarkdownHelper;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 #[Route('/', name: 'app_question_')]
 class QuestionController extends AbstractController {
@@ -17,7 +19,7 @@ class QuestionController extends AbstractController {
     }
 
     #[Route('/questions/{slug}', name: 'show')]
-    public function show($slug): Response
+    public function show($slug,  MarkdownHelper $markdownHelper) : Response {
     {
         $answers = [
             'Fill another jar',
@@ -25,13 +27,19 @@ class QuestionController extends AbstractController {
             'Say spell backwards'
         ];
 
-        dump($slug, $this);
+        $questionText = 'I\'ve spell another jar of **magic** jam. How can I get it back?';
+        $parsedQuestionText = $markdownHelper->parse($questionText);
+
+        
+        
         return $this->render('question/show.html.twig',
         ['question'=> ucwords(str_replace('-', ' ', $slug)),
+         'questionText' => $parsedQuestionText,
          'answers' => $answers,
         ]
     
     );
     }
 
+}
 }
