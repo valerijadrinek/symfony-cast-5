@@ -27,6 +27,7 @@ class __TwigTemplate_ecac9407e4d67eb83896a503f2606149 extends Template
         $this->blocks = [
             'title' => [$this, 'block_title'],
             'body' => [$this, 'block_body'],
+            'javascripts' => [$this, 'block_javascripts'],
         ];
     }
 
@@ -148,10 +149,10 @@ class __TwigTemplate_ecac9407e4d67eb83896a503f2606149 extends Template
             echo "
                         <p>-- Mallory</p>
                     </div>
-                    <div class=\"vote-arrows flex-fill pt-2\" style=\"min-width: 90px;\">
-                        <a class=\"vote-up\" href=\"#\"><i class=\"far fa-arrow-alt-circle-up\"></i></a>
-                        <a class=\"vote-down\" href=\"#\"><i class=\"far fa-arrow-alt-circle-down\"></i></a>
-                        <span>+ 6</span>
+                    <div class=\"vote-arrows flex-fill pt-2 js-vote-arrows\" style=\"min-width: 90px;\">
+                        <a class=\"vote-up\" href=\"#\" data-direction=\"up\"><i class=\"far fa-arrow-alt-circle-up\"></i></a>
+                        <a class=\"vote-down\" href=\"#\" data-direction=\"down\"><i class=\"far fa-arrow-alt-circle-down\"></i></a>
+                        <span>+ <span class=\"js-vote-total\">6</span></span>
                     </div>
                 </div>
             </li>
@@ -163,6 +164,33 @@ class __TwigTemplate_ecac9407e4d67eb83896a503f2606149 extends Template
         // line 56
         echo "    </ul>
 </div>
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+    }
+
+    // line 59
+    public function block_javascripts($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
+
+        // line 60
+        echo "   ";
+        $this->displayParentBlock("javascripts", $context, $blocks);
+        echo "
+   <script src=\"";
+        // line 61
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("js/question_show.js"), "html", null, true);
+        echo "\"></script>
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -184,7 +212,7 @@ class __TwigTemplate_ecac9407e4d67eb83896a503f2606149 extends Template
 
     public function getDebugInfo()
     {
-        return array (  164 => 56,  147 => 45,  141 => 42,  136 => 39,  132 => 38,  122 => 31,  105 => 17,  99 => 14,  89 => 6,  79 => 5,  59 => 3,  36 => 1,);
+        return array (  192 => 61,  187 => 60,  177 => 59,  165 => 56,  148 => 45,  142 => 42,  137 => 39,  133 => 38,  123 => 31,  106 => 17,  100 => 14,  90 => 6,  80 => 5,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -236,16 +264,20 @@ class __TwigTemplate_ecac9407e4d67eb83896a503f2606149 extends Template
                         {{ answer }}
                         <p>-- Mallory</p>
                     </div>
-                    <div class=\"vote-arrows flex-fill pt-2\" style=\"min-width: 90px;\">
-                        <a class=\"vote-up\" href=\"#\"><i class=\"far fa-arrow-alt-circle-up\"></i></a>
-                        <a class=\"vote-down\" href=\"#\"><i class=\"far fa-arrow-alt-circle-down\"></i></a>
-                        <span>+ 6</span>
+                    <div class=\"vote-arrows flex-fill pt-2 js-vote-arrows\" style=\"min-width: 90px;\">
+                        <a class=\"vote-up\" href=\"#\" data-direction=\"up\"><i class=\"far fa-arrow-alt-circle-up\"></i></a>
+                        <a class=\"vote-down\" href=\"#\" data-direction=\"down\"><i class=\"far fa-arrow-alt-circle-down\"></i></a>
+                        <span>+ <span class=\"js-vote-total\">6</span></span>
                     </div>
                 </div>
             </li>
         {% endfor %}
     </ul>
 </div>
+{% endblock %}
+{% block javascripts %}
+   {{ parent() }}
+   <script src=\"{{ asset('js/question_show.js') }}\"></script>
 {% endblock %}", "question/show.html.twig", "F:\\zadaci\\cauldron_overflow\\templates\\question\\show.html.twig");
     }
 }

@@ -59,7 +59,10 @@ class __TwigTemplate_ced71bca00a353f68d4db4ec78866f55 extends Template
         echo "    </head>
     <body>
         <nav class=\"navbar navbar-light bg-light\" style=\"height: 100px;\">
-          <a class=\"navbar-brand\" href=\"#\">
+          <a class=\"navbar-brand\" href=\"";
+        // line 15
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_question_homepage");
+        echo "\">
             <i style=\"color: #444; font-size: 2rem;\" class=\"pb-1 fad fa-cauldron\"></i>
             <p class=\"pl-2 d-inline font-weight-bold\" style=\"color: #444;\">Cauldron Overflow</p>
           </a>
@@ -76,7 +79,7 @@ class __TwigTemplate_ced71bca00a353f68d4db4ec78866f55 extends Template
         ";
         // line 26
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 27
+        // line 29
         echo "    </body>
 </html>
 ";
@@ -162,6 +165,9 @@ class __TwigTemplate_ced71bca00a353f68d4db4ec78866f55 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
+        // line 27
+        echo "           <script src=\"https://code.jquery.com/jquery-3.7.1.min.js\" integrity=\"sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=\" crossorigin=\"anonymous\"></script>
+        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -175,9 +181,14 @@ class __TwigTemplate_ced71bca00a353f68d4db4ec78866f55 extends Template
         return "base.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  156 => 26,  138 => 22,  126 => 10,  121 => 7,  111 => 6,  92 => 5,  80 => 27,  78 => 26,  73 => 23,  71 => 22,  59 => 12,  57 => 6,  53 => 5,  47 => 1,);
+        return array (  169 => 27,  159 => 26,  141 => 22,  129 => 10,  124 => 7,  114 => 6,  95 => 5,  83 => 29,  81 => 26,  76 => 23,  74 => 22,  64 => 15,  59 => 12,  57 => 6,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -196,7 +207,7 @@ class __TwigTemplate_ced71bca00a353f68d4db4ec78866f55 extends Template
     </head>
     <body>
         <nav class=\"navbar navbar-light bg-light\" style=\"height: 100px;\">
-          <a class=\"navbar-brand\" href=\"#\">
+          <a class=\"navbar-brand\" href=\"{{ path('app_question_homepage') }}\">
             <i style=\"color: #444; font-size: 2rem;\" class=\"pb-1 fad fa-cauldron\"></i>
             <p class=\"pl-2 d-inline font-weight-bold\" style=\"color: #444;\">Cauldron Overflow</p>
           </a>
@@ -207,7 +218,9 @@ class __TwigTemplate_ced71bca00a353f68d4db4ec78866f55 extends Template
         <footer class=\"mt-5 p-3 text-center\">
             Made with <i style=\"color: red;\" class=\"fa fa-heart\"></i> by the guys and gals at <a style=\"color: #444; text-decoration: underline;\" href=\"https://symfonycasts.com\">SymfonyCasts</a>
         </footer>
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+           <script src=\"https://code.jquery.com/jquery-3.7.1.min.js\" integrity=\"sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=\" crossorigin=\"anonymous\"></script>
+        {% endblock %}
     </body>
 </html>
 ", "base.html.twig", "F:\\zadaci\\cauldron_overflow\\templates\\base.html.twig");

@@ -16,6 +16,7 @@ return [
     '_profiler_router' => [['token'], ['_controller' => 'web_profiler.controller.router::panelAction'], [], [['text', '/router'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
-    'app_question_list' => [[], ['_controller' => 'App\\Controller\\QuestionController::homepage'], [], [['text', '/']], [], [], []],
+    'app_comment_vote' => [['id', 'direction'], ['_controller' => 'App\\Controller\\CommentController::commentVote'], ['id' => '\\d+', 'direction' => 'up|down'], [['variable', '/', 'up|down', 'direction', true], ['text', '/vote'], ['variable', '/', '\\d+', 'id', true], ['text', '/comments']], [], [], []],
+    'app_question_homepage' => [[], ['_controller' => 'App\\Controller\\QuestionController::homepage'], [], [['text', '/']], [], [], []],
     'app_question_show' => [['slug'], ['_controller' => 'App\\Controller\\QuestionController::show'], [], [['variable', '/', '[^/]++', 'slug', true], ['text', '/questions']], [], [], []],
 ];

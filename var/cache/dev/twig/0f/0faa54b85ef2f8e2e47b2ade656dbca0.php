@@ -93,7 +93,10 @@ class __TwigTemplate_8daf85e1c91044ddfd3c66f76499efd4 extends Template
                             </div>
                         </div>
                         <div class=\"col\">
-                            <a class=\"q-title\" href=\"#\"><h2>Reversing a Spell</h2></a>
+                            <a class=\"q-title\" href=\"";
+        // line 29
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_question_show", ["slug" => "reversing-a-spell"]);
+        echo "\"><h2>Reversing a Spell</h2></a>
                             <div class=\"q-display p-3\">
                                 <i class=\"fa fa-quote-left mr-3\"></i>
                                 <p class=\"d-inline\">I've been turned into a cat, any thoughts on how to turn back? While I'm adorable, I don't really care for cat food.</p>
@@ -102,7 +105,10 @@ class __TwigTemplate_8daf85e1c91044ddfd3c66f76499efd4 extends Template
                         </div>
                     </div>
                 </div>
-                <a class=\"answer-link\" href=\"#\" style=\"color: #fff;\">
+                <a class=\"answer-link\" href=\"";
+        // line 38
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_question_show", ["slug" => "reversing-a-spell"]);
+        echo "\" style=\"color: #fff;\">
                     <p class=\"q-display-response text-center p-3\">
                         <i class=\"fa fa-magic magic-wand\"></i> 6 answers
                     </p>
@@ -124,7 +130,10 @@ class __TwigTemplate_8daf85e1c91044ddfd3c66f76499efd4 extends Template
                         </div>
                     </div>
                     <div class=\"col\">
-                        <a class=\"q-title\" href=\"#\"><h2>Pausing a Spell</h2></a>
+                        <a class=\"q-title\" href=\"";
+        // line 57
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_question_show", ["slug" => "pausing-a-spell"]);
+        echo "\"><h2>Pausing a Spell</h2></a>
                         <div class=\"q-display p-3\">
                             <i class=\"fa fa-quote-left mr-3\"></i>
                             <p class=\"d-inline\">I mastered the floating card, but now how do I get it back to the ground?</p>
@@ -133,7 +142,10 @@ class __TwigTemplate_8daf85e1c91044ddfd3c66f76499efd4 extends Template
                     </div>
                 </div>
             </div>
-            <a class=\"answer-link\" href=\"#\" style=\"color: #fff;\">
+            <a class=\"answer-link\" href=\"";
+        // line 66
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_question_show", ["slug" => "pausing-a-spell"]);
+        echo "\" style=\"color: #fff;\">
                 <p class=\"q-display-response text-center p-3\">
                     <i class=\"fa fa-magic magic-wand\"></i> 15 answers
                 </p>
@@ -162,7 +174,7 @@ class __TwigTemplate_8daf85e1c91044ddfd3c66f76499efd4 extends Template
 
     public function getDebugInfo()
     {
-        return array (  119 => 50,  88 => 22,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  147 => 66,  135 => 57,  125 => 50,  110 => 38,  98 => 29,  88 => 22,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -195,7 +207,7 @@ class __TwigTemplate_8daf85e1c91044ddfd3c66f76499efd4 extends Template
                             </div>
                         </div>
                         <div class=\"col\">
-                            <a class=\"q-title\" href=\"#\"><h2>Reversing a Spell</h2></a>
+                            <a class=\"q-title\" href=\"{{ path('app_question_show', {slug: 'reversing-a-spell' }) }}\"><h2>Reversing a Spell</h2></a>
                             <div class=\"q-display p-3\">
                                 <i class=\"fa fa-quote-left mr-3\"></i>
                                 <p class=\"d-inline\">I've been turned into a cat, any thoughts on how to turn back? While I'm adorable, I don't really care for cat food.</p>
@@ -204,7 +216,7 @@ class __TwigTemplate_8daf85e1c91044ddfd3c66f76499efd4 extends Template
                         </div>
                     </div>
                 </div>
-                <a class=\"answer-link\" href=\"#\" style=\"color: #fff;\">
+                <a class=\"answer-link\" href=\"{{ path('app_question_show', {slug: 'reversing-a-spell' }) }}\" style=\"color: #fff;\">
                     <p class=\"q-display-response text-center p-3\">
                         <i class=\"fa fa-magic magic-wand\"></i> 6 answers
                     </p>
@@ -223,7 +235,7 @@ class __TwigTemplate_8daf85e1c91044ddfd3c66f76499efd4 extends Template
                         </div>
                     </div>
                     <div class=\"col\">
-                        <a class=\"q-title\" href=\"#\"><h2>Pausing a Spell</h2></a>
+                        <a class=\"q-title\" href=\"{{ path('app_question_show', {slug: 'pausing-a-spell'}) }}\"><h2>Pausing a Spell</h2></a>
                         <div class=\"q-display p-3\">
                             <i class=\"fa fa-quote-left mr-3\"></i>
                             <p class=\"d-inline\">I mastered the floating card, but now how do I get it back to the ground?</p>
@@ -232,7 +244,7 @@ class __TwigTemplate_8daf85e1c91044ddfd3c66f76499efd4 extends Template
                     </div>
                 </div>
             </div>
-            <a class=\"answer-link\" href=\"#\" style=\"color: #fff;\">
+            <a class=\"answer-link\" href=\"{{ path('app_question_show', {slug: 'pausing-a-spell'}) }}\" style=\"color: #fff;\">
                 <p class=\"q-display-response text-center p-3\">
                     <i class=\"fa fa-magic magic-wand\"></i> 15 answers
                 </p>

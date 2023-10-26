@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/', name: 'app_question_')]
 class QuestionController extends AbstractController {
 
-    #[Route('/', name: 'list')]
+    #[Route('/', name: 'homepage')]
     public function homepage() : Response {
         return $this->render('question/homepage.html.twig',
         []
