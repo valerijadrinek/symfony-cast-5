@@ -13,15 +13,19 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 class Question
 {
+    
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    
     private ?string $name = null;
 
     #[ORM\Column(name:'slug', length: 100, unique: true)]
+    
    
     private ?string $slug = null;
 

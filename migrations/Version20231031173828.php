@@ -7,11 +7,10 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20231031114846 extends AbstractMigration
+final class Version20231031173828 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -21,13 +20,15 @@ final class Version20231031114846 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        //$this->addSql('ALTER TABLE question ADD votes INT NOT NULL');
+        $this->addSql('CREATE SEQUENCE answer_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE TABLE answer (id INT NOT NULL, content TEXT NOT NULL, username VARCHAR(255) NOT NULL, votes INT NOT NULL, PRIMARY KEY(id))');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('ALTER TABLE question DROP votes');
+        $this->addSql('DROP SEQUENCE answer_id_seq CASCADE');
+        $this->addSql('DROP TABLE answer');
     }
 }

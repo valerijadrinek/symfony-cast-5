@@ -15,6 +15,7 @@
         "knplabs/knp-markdown-bundle": "^1.10",
         "knplabs/knp-time-bundle": "1.19.0",
         "sentry/sentry-symfony": "^4.11",
+        "stof/doctrine-extensions-bundle": "^1.9",
         "symfony/asset": "6.3.*",
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",

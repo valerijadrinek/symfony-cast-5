@@ -3,10 +3,11 @@
 namespace App\Factory;
 
 use App\Entity\Question;
-use App\Repository\QuestionRepository;
-use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
+use Zenstruck\Foundry\ModelFactory;
+use App\Repository\QuestionRepository;
 use Zenstruck\Foundry\RepositoryProxy;
+use Symfony\Component\String\Slugger\AsciiSlugger;
 
 /**
  * @extends ModelFactory<Question>
@@ -47,9 +48,12 @@ final class QuestionFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'name' => self::faker()->text(255),
-            'question' => self::faker()->text(),
-            'slug' => self::faker()->text(100),
+            'name' => self::faker()->text(35),
+            'question' => self::faker()->paragraphs(
+                self::faker()->numberBetween(1, 4),
+                true
+            ),
+            'askedAt' => self::faker()->boolean(70) ? self::faker()->dateTimeBetween('-100 days', '-1 minute') : null,
             'votes' => self::faker()->randomNumber(),
         ];
     }
@@ -60,8 +64,13 @@ final class QuestionFactory extends ModelFactory
     protected function initialize(): self
     {
         return $this
-            // ->afterInstantiate(function(Question $question): void {})
-        ;
+            ->afterInstantiate(function(Question $question): void {
+            if(!$question->getSlug()) {
+                $slugger = new AsciiSlugger();
+                $question->setSlug($slugger->slug($question->getName()));
+            }
+          })
+         ;
     }
 
     protected static function getClass(): string
