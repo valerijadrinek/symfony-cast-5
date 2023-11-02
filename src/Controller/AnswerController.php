@@ -29,4 +29,14 @@ class AnswerController extends AbstractController
         $entityManager->flush();
         return $this->json(['votes' => $answer->getVotes()]);
     }
+
+    #[Route(path:"/answers/popular}", name:"app_popular_answers")]
+    public function popularAnswers(AnswerRepository $answerReRepositry) : Response
+    {
+
+        $answers = $answerRepository->findMostPopular();
+
+        return $this->render('answer/popularAnswers.html.twig');
+
+    }  
 }
