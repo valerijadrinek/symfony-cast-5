@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Question;
 use Psr\Log\LoggerInterface;
 use App\Service\MarkdownHelper;
+use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,18 +47,11 @@ class QuestionController extends AbstractController {
     }
 
     #[Route('/questions/{slug}', name: 'show')]
-    public function show(Question $question) : Response {
+    public function show(Question $question, AnswerRepository $answerRepository  ) : Response {
     {
-        
-        $answers = [
-            'Fill another jar! ',
-            'Eat that jar... ',
-            'Say spell backwards. '
-        ];
 
         return $this->render('question/show.html.twig',
         ['question'=> $question,
-         'answers' => $answers,
         ]
     
     );

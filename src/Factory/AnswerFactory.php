@@ -39,6 +39,11 @@ final class AnswerFactory extends ModelFactory
         parent::__construct();
     }
 
+    public function needsApproval(): self
+    {
+        return $this->addState(['status' => Answer::STATUS_NEEDS_APPROVAL]);
+    }
+
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
      *

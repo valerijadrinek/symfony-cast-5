@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Repository\AnswerRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\QuestionRepository;
+use Doctrine\Common\Collections\Criteria;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -41,7 +43,8 @@ class Question
     #[ORM\Column]
     private ?int $votes = 0;
 
-    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'question', targetEntity: Answer::class, orphanRemoval: true, fetch:"EXTRA_LAZY")]
+    #[ORM\OrderBy(['createdAt' => 'DESC'])]
     private Collection $answer;
 
     public function __construct()
@@ -136,6 +139,11 @@ class Question
      * @return Collection<int, Answer>
      */
     public function getAnswer(): Collection
+    {
+        return $this->answer;
+    }
+
+    public function getApprovedAnswer() : Collection
     {
         return $this->answer;
     }
