@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\Answer;
 use Psr\Log\LoggerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\AnswerRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,13 +31,18 @@ class AnswerController extends AbstractController
         return $this->json(['votes' => $answer->getVotes()]);
     }
 
-    #[Route(path:"/answers/popular}", name:"app_popular_answers")]
-    public function popularAnswers(AnswerRepository $answerReRepositry) : Response
+    #[Route(path:"/answers/popular", name:"app_popular_answers")]
+    public function popularAnswers(AnswerRepository $answerRepository, Request $request) : Response
     {
 
-        $answers = $answerRepository->findMostPopular();
+        $answers = $answerRepository->findMostPopular(
+            $request->query->get('q')
+        );
 
-        return $this->render('answer/popularAnswers.html.twig');
+        return $this->render('answer/popularAnswers.html.twig', 
+    [
+        'answers' => $answers,
+    ]);
 
     }  
 }

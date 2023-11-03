@@ -29,16 +29,22 @@ class AnswerRepository extends ServiceEntityRepository
             ->andWhere(Criteria::expr()->eq('status', Answer::STATUS_APPROVED));
     }
 
-    public function findMostPopular(): array
+    public function findMostPopular(string $search = null) : array
     {
-        return $this->createQueryBuilder('answer')
-            ->addCriteria(self::createApprovedCriteria())
+        $queryBuilder =  $this->createQueryBuilder('answer')
+            
             ->orderBy('answer.votes', 'DESC')
             ->innerJoin('answer.question', 'question')
-            ->addSelect('question')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult();
+            ->addSelect('question');
+           
+            if ($search) {
+                $queryBuilder->andWhere('answer.content LIKE :searchTerm OR question.question LIKE :searchTerm')
+                    ->setParameter('searchTerm', '%'.$search.'%');
+            }
+            return $queryBuilder
+                ->setMaxResults(10)
+                ->getQuery()
+                ->getResult();
     }
 
 //    /**
