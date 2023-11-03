@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Question;
 use App\Factory\AnswerFactory;
+use App\Factory\HumaniodEntityFactory;
 use App\Factory\QuestionFactory;
 use App\Factory\TagFactory;
 use Doctrine\Persistence\ObjectManager;
@@ -27,6 +28,9 @@ class AppFixtures extends Fixture
                 'question' => $questions[array_rand($questions)]
             ];
         })->needsApproval()->many(20)->create();
+
+        HumaniodEntityFactory::createOne(['email' => 'abraca_admin@example.com']);
+        HumaniodEntityFactory::createMany(10);
 
         $manager->flush();
     }
