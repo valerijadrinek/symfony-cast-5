@@ -22,7 +22,7 @@ class Tag
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?\DateTimeInterface $createdAt = null;
+    public ?\DateTimeInterface $createdAt = null;
 
     #[ORM\ManyToMany(targetEntity: Question::class, mappedBy: 'tags')]
     private Collection $questions;

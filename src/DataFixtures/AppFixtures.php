@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Question;
 use App\Factory\AnswerFactory;
 use App\Factory\QuestionFactory;
+use App\Factory\TagFactory;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -12,8 +13,12 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        
-        $questions = QuestionFactory::createMany(10);
+        TagFactory::createMany(100);
+        $questions = QuestionFactory::createMany(20, function() {
+            return [     //if using only return without function it will generate one ransom tag and assign it to all questions
+                'tags' => TagFactory::randomRange(0, 5),
+            ];
+        });
 
         AnswerFactory::createMany(100);
 
