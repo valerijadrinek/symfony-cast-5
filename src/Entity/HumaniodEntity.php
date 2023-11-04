@@ -4,10 +4,12 @@ namespace App\Entity;
 
 use App\Repository\HumaniodEntityRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: HumaniodEntityRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class HumaniodEntity implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -120,5 +122,19 @@ class HumaniodEntity implements UserInterface, PasswordAuthenticatedUserInterfac
     {
         $this->plainPassword = $plainPassword;
         return $this;
+    }
+
+    public function getDisplayName(): string
+    {
+        return $this->getFirstName() ?: $this->getEmail();
+    }
+
+    public function getAvatarUri(int $size = 32): string
+    {
+        return 'https://ui-avatars.com/api/?' . http_build_query([
+            'name' => $this->getDisplayName(),
+            'size' => $size,
+            'background' => 'random',
+        ]);
     }
 }
