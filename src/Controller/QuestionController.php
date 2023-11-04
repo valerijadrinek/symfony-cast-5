@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -40,8 +41,10 @@ class QuestionController extends AbstractController {
     }
 
     #[Route('/questions/new', name: 'new')]
+    #[IsGranted("ROLE_USER")]
      public function new() : Response
     {
+        
        
         return new Response('Sounds like a GREAT feature for V2!');
     }
@@ -50,6 +53,7 @@ class QuestionController extends AbstractController {
     public function show(Question $question, AnswerRepository $answerRepository  ) : Response {
     {
 
+        
         return $this->render('question/show.html.twig',
         ['question'=> $question,
         ]
@@ -74,5 +78,11 @@ class QuestionController extends AbstractController {
         return $this->redirectToRoute('app_question_show', [
             'slug' => $question->getSlug()
         ]);
+    }
+
+    #[Route('/admin/dashboard', name: 'admin_dashboard')]
+    public function adminDashboard() : Response
+    {
+        return new Response('Sounds like a GREAT feature for Admins from Question Controller!');
     }
 }

@@ -1,21 +1,29 @@
 <?php
 namespace App\Controller;
 
+use App\Controller\BaseController;
 use App\Entity\Answer;
 use Psr\Log\LoggerInterface;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\AnswerRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-class AnswerController extends AbstractController 
+
+class AnswerController extends BaseController 
 {
     #[Route(path:"/answers/{id<\d+>}/vote/{direction<up|down>}", name:"answer_vote", methods:"POST")]
+    #[IsGranted('IS_AUTHENTICATED_REMEMBERED')]
     public function answerVote(Answer $answer, LoggerInterface $logger, Request $request, EntityManagerInterface $entityManager) : Response
     {
+        $logger->info('{user} is voting on answer {answer}!', [
+            'user' => $this->getUser()->getEmail(),
+            'answer' => $answer->getId(),
+        ]);
+
+
         $data = json_decode($request->getContent(), true);
         $direction = $data['direction'] ?? 'up';
         // use real logic here to save this to the database

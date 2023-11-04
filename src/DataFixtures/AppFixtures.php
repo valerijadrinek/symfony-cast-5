@@ -29,7 +29,14 @@ class AppFixtures extends Fixture
             ];
         })->needsApproval()->many(20)->create();
 
-        HumaniodEntityFactory::createOne(['email' => 'abraca_admin@example.com']);
+        HumaniodEntityFactory::createOne([
+            'email' => 'abraca_admin@example.com',
+            'roles' => ['ROLE_ADMIN']
+        ]);
+        HumaniodEntityFactory::createOne([
+            'email' => 'abraca_user@example.com',
+    
+        ]);
         HumaniodEntityFactory::createMany(10);
 
         $manager->flush();

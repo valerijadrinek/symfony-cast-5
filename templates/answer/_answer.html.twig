@@ -20,6 +20,7 @@
                     </div>
                     <div class="col-2 text-end">
                     <small>{{ answer.createdAt|ago }}</small>
+                    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                         <div
                             class="vote-arrows"
                             
@@ -38,6 +39,7 @@
                             ><i class="far fa-arrow-alt-circle-down"></i></button>
                             <span>{{ answer.votes }}</span>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </li>
