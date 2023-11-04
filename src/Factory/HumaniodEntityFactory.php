@@ -7,6 +7,7 @@ use App\Repository\HumaniodEntityRepository;
 use Zenstruck\Foundry\ModelFactory;
 use Zenstruck\Foundry\Proxy;
 use Zenstruck\Foundry\RepositoryProxy;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * @extends ModelFactory<HumaniodEntity>
@@ -29,13 +30,15 @@ use Zenstruck\Foundry\RepositoryProxy;
  */
 final class HumaniodEntityFactory extends ModelFactory
 {
+    private UserPasswordHasherInterface $passwordInterface;
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
      *
      * @todo inject services if required
      */
-    public function __construct()
+    public function __construct(UserPasswordHasherInterface $passwordInterface)
     {
+        $this->passwordInterface = $passwordInterface;
         parent::__construct();
     }
 
@@ -49,6 +52,7 @@ final class HumaniodEntityFactory extends ModelFactory
         return [
             'email' => self::faker()->email(),
             'firstname' => self::faker()->firstName(),
+            'plainPassword' => 'tada',
         ];
     }
 
@@ -58,7 +62,13 @@ final class HumaniodEntityFactory extends ModelFactory
     protected function initialize(): self
     {
         return $this
-            // ->afterInstantiate(function(HumaniodEntity $humaniodEntity): void {})
+            ->afterInstantiate(function(HumaniodEntity $user) {
+                if ($user->getPlainPassword()) {
+                    $user->setPassword(
+                        $this->passwordInterface->hashPassword($user, $user->getPlainPassword())
+                    );
+                }
+            })
         ;
     }
 
