@@ -14,10 +14,22 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        HumaniodEntityFactory::createOne([
+            'email' => 'abraca_admin@example.com',
+            'roles' => ['ROLE_ADMIN']
+        ]);
+        HumaniodEntityFactory::createOne([
+            'email' => 'abraca_user@example.com',
+    
+        ]);
+        HumaniodEntityFactory::createMany(10);
+
         TagFactory::createMany(100);
+        
         $questions = QuestionFactory::createMany(20, function() {
             return [     //if using only return without function it will generate one ransom tag and assign it to all questions
                 'tags' => TagFactory::randomRange(0, 5),
+                'owner' => HumaniodEntityFactory::random(),
             ];
         });
 
@@ -29,15 +41,7 @@ class AppFixtures extends Fixture
             ];
         })->needsApproval()->many(20)->create();
 
-        HumaniodEntityFactory::createOne([
-            'email' => 'abraca_admin@example.com',
-            'roles' => ['ROLE_ADMIN']
-        ]);
-        HumaniodEntityFactory::createOne([
-            'email' => 'abraca_user@example.com',
-    
-        ]);
-        HumaniodEntityFactory::createMany(10);
+       
 
         $manager->flush();
     }

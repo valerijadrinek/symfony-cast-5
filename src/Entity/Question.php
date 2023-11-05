@@ -50,6 +50,10 @@ class Question
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'questions')]
     private Collection $tags;
 
+    #[ORM\ManyToOne(inversedBy: 'questions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?HumaniodEntity $owner = null;
+
     public function __construct()
     {
         $this->answer = new ArrayCollection();
@@ -194,6 +198,18 @@ class Question
     public function removeTag(Tag $tag): static
     {
         $this->tags->removeElement($tag);
+
+        return $this;
+    }
+
+    public function getOwner(): ?HumaniodEntity
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?HumaniodEntity $owner): static
+    {
+        $this->owner = $owner;
 
         return $this;
     }
