@@ -85,4 +85,22 @@ class QuestionController extends AbstractController {
     {
         return new Response('Sounds like a GREAT feature for Admins from Question Controller!');
     }
+
+    #[Route('/question/edit/{slug}', name: 'edit')] 
+    public function editQuestion(Question $question) : Response
+    {
+        $this->denyAccessUnlessGranted('EDIT', $question);
+        
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        if ($question->getOwner() !== $this->getUser()) {
+            throw $this->createAccessDeniedException('You are not the owner!');
+        }
+
+        return $this->render('question/edit.html.twig',
+        [
+            'question' => $question,
+        ]
+        );
+
+    }
 }

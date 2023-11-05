@@ -36,6 +36,9 @@ class HumaniodEntity implements UserInterface, PasswordAuthenticatedUserInterfac
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Question::class)]
     private Collection $questions;
 
+    #[ORM\Column]
+    private ?bool $isVerified = false;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
@@ -174,6 +177,18 @@ class HumaniodEntity implements UserInterface, PasswordAuthenticatedUserInterfac
                 $question->setOwner(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isIsVerified(): ?bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }
