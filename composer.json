@@ -24,6 +24,7 @@
         "symfony/framework-bundle": "6.3.*",
         "symfony/intl": "6.3.*",
         "symfony/monolog-bundle": "^3.0",
+        "symfony/rate-limiter": "6.3.*",
         "symfony/runtime": "6.3.*",
         "symfony/security-bundle": "6.3.*",
         "symfony/stimulus-bundle": "^2.12",

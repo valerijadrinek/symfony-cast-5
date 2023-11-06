@@ -29,6 +29,8 @@ security:
             #entry_point: App\Security\LoginFormAuthenticator
             #custom_authenticator: App\Security\LoginFormAuthenticator
             logout: true
+
+            login_throttling: true
             
             remember_me:
                 secret: '%kernel.secret%'

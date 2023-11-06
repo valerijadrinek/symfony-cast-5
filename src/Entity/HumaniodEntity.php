@@ -139,7 +139,7 @@ class HumaniodEntity implements UserInterface, PasswordAuthenticatedUserInterfac
 
     public function getDisplayName(): string
     {
-        return $this->getFirstName() ?: $this->getEmail();
+        return $this->getFirstname() ?: $this->getEmail();
     }
 
     public function getAvatarUri(int $size = 32): string
@@ -147,7 +147,8 @@ class HumaniodEntity implements UserInterface, PasswordAuthenticatedUserInterfac
         return 'https://ui-avatars.com/api/?' . http_build_query([
             'name' => $this->getDisplayName(),
             'size' => $size,
-            'background' => 'random',
+            'background' => '0D8ABC',
+            'color' => 'fff',
         ]);
     }
 
